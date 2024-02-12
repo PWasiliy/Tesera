@@ -2,7 +2,7 @@
 using Tesera.Types.Enums;
 using Tesera.Models;
 
-namespace Tesera.Collections
+namespace Tesera.API.Collections
 {
 	public class Base : UriGetRequest<IEnumerable<CustomCollectionGameInfo>>
 	{
