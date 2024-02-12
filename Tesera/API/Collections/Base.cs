@@ -4,7 +4,6 @@ using Tesera.Models;
 
 namespace Tesera.Collections
 {
-    public enum CollectionType { Own, Played, ToPlay, Wishlist }
 	public class Base : UriGetRequest<IEnumerable<CustomCollectionGameInfo>>
 	{
 		readonly CollectionType _collectionType;
