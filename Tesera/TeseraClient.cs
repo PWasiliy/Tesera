@@ -8,7 +8,8 @@ namespace Tesera
 		readonly HttpClient _httpClient;
 		readonly JsonSerializerOptions _jsonSerializerOptions = new() { IncludeFields = true, PropertyNameCaseInsensitive = true };
 
-		public TeseraClient(HttpClient? httpClient = null) => _httpClient = httpClient ?? new();
+		public TeseraClient(HttpClient? httpClient) => _httpClient = httpClient ?? new();
+		public TeseraClient() : this(null) { }
 
 		public T? Get<T>(string requestUri, JsonSerializerOptions? jsonSerializerOptions = null)
 		{
