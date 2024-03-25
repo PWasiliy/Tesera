@@ -18,5 +18,13 @@ namespace Tesera
 		}
 
 		public T? Get<T>(UriGetRequest<T> uriGetRequest) => this.Get<T>(uriGetRequest.GetUri());
+
+		public async Task<T?> GetAsync<T>(string requestUri, JsonSerializerOptions? jsonSerializerOptions = null)
+		{
+			using Stream stream = await _httpClient.GetStreamAsync(requestUri);
+			return JsonSerializer.Deserialize<T>(stream, jsonSerializerOptions ?? _jsonSerializerOptions);
+		}
+
+		public async Task<T?> GetAsync<T>(UriGetRequest<T> uriGetRequest) => await this.GetAsync<T>(uriGetRequest.GetUri());
 	}
 }
