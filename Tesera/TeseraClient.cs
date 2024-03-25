@@ -11,14 +11,6 @@ namespace Tesera
 		public TeseraClient(HttpClient? httpClient) => _httpClient = httpClient ?? new();
 		public TeseraClient() : this(null) { }
 
-		public T? Get<T>(string requestUri, JsonSerializerOptions? jsonSerializerOptions = null)
-		{
-			using Task<Stream> task = _httpClient.GetStreamAsync(requestUri);
-			return JsonSerializer.Deserialize<T>(task.Result, jsonSerializerOptions ?? _jsonSerializerOptions);
-		}
-
-		public T? Get<T>(UriGetRequest<T> uriGetRequest) => this.Get<T>(uriGetRequest.GetUri());
-
 		public async Task<T?> GetAsync<T>(string requestUri, JsonSerializerOptions? jsonSerializerOptions = null)
 		{
 			using Stream stream = await _httpClient.GetStreamAsync(requestUri);
